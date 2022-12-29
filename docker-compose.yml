@@ -1,0 +1,17 @@
+---
+version: "3"
+services:
+  vpn:
+    image: jellyfin:alpine
+    container_name: jellyfin
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./config/jellyfin:/jellyfin
+    ports:
+      - 8096:8096
+    restart: unless-stopped
