@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
-echo "I'm about to call the signalproxy"
+set -ex
 # Proxy signals
 sp_processes=("jellyfin")
-. ./signalproxy.sh
+. /signalproxy.sh
 
 # Overload Traps
   #none
 
-# Launch App
+# Configure Stuff
+JELLYFINDIR="/opt/jellyfin"
+FFMPEGDIR="/usr/share/jellyfin-ffmpeg"
+DATADIR="/data/jellyfin"
 
-  JELLYFINDIR="/opt/jellyfin"
-  FFMPEGDIR="/usr/share/jellyfin-ffmpeg"
+# Launch App
   $JELLYFINDIR/jellyfin/jellyfin \
-  -d $JELLYFINDIR/data \
-  -C $JELLYFINDIR/cache \
-  -c $JELLYFINDIR/config \
-  -l $JELLYFINDIR/log \
+  -d $DATADIR/data \
+  -C $DATADIR/cache \
+  -c $DATADIR/config \
+  -l $DATADIR/log \
   --ffmpeg $FFMPEGDIR/ffmpeg & \
   wait -n
