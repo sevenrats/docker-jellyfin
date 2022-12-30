@@ -8,11 +8,12 @@ cd /opt/jellyfin && \
 wget https://repo.jellyfin.org/releases/server/linux/stable/combined/jellyfin_10.8.8_amd64-musl.tar.gz && \
 tar -xvzf jellyfin_10.8.8_amd64-musl.tar.gz && \
 ln -s jellyfin_10.8.8 jellyfin && \
-mkdir data cache config log && \
+mkdir -p \
+/data/data data/cache data/config data/log && \
 cd / && \
 wget https://raw.githubusercontent.com/sevenrats/signalproxy.sh/main/signalproxy.sh && \
 rm -rf \
-    /tmp/* \
+    /tmp/* /var/cache \
     /opt/jellyfin/jellyfin_10.8.8_amd64-musl.tar.gz
 
 COPY entrypoint.sh /entrypoint.sh
