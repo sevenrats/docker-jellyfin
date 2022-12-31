@@ -2,7 +2,7 @@
 version: "3"
 services:
   vpn:
-    image: jellyfin:alpine
+    image: jellyfin
     container_name: jellyfin
     security_opt:
       - no-new-privileges:true
